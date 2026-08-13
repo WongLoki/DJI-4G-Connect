@@ -33,9 +33,9 @@ func activateDJINetwork(output io.Writer) (string, error) {
 	}
 	present, _ := moduleUSBState()
 	if !present {
-		return "", errors.New("未检测到大疆第一代 4G 模块（USB 2ca3:4006）")
+		return "", errors.New("未检测到受支持的 DJI 4G 模块（USB 2ca3:4006）")
 	}
-	fmt.Fprintln(output, "已检测到大疆第一代 4G 模块（USB 2ca3:4006）")
+	fmt.Fprintln(output, "已检测到受支持的 DJI 4G 模块（USB 2ca3:4006）")
 
 	cleanupResult := removeOrphanedModemServices(output)
 	if device, address := activeModemLink(); device != "" {

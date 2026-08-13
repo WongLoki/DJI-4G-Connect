@@ -10,7 +10,7 @@ package main
 #import <UserNotifications/UserNotifications.h>
 #include <stdlib.h>
 
-static void DJI4GConnectShowNotification(const char *titleCString, const char *messageCString) {
+static void FourGConnectShowNotification(const char *titleCString, const char *messageCString) {
     @autoreleasepool {
         NSString *title = [NSString stringWithUTF8String:titleCString];
         NSString *message = [NSString stringWithUTF8String:messageCString];
@@ -34,7 +34,7 @@ static void DJI4GConnectShowNotification(const char *titleCString, const char *m
         content.body = message;
         content.sound = [UNNotificationSound defaultSound];
 
-        NSString *identifier = [NSString stringWithFormat:@"io.github.wongloki.dji4gconnect.%@",
+        NSString *identifier = [NSString stringWithFormat:@"io.github.wongloki.fourgconnect.%@",
                                 [[NSUUID UUID] UUIDString]];
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:identifier
                                                                                 content:content
@@ -57,5 +57,5 @@ func showNotification(title, message string) {
 	messageCString := C.CString(message)
 	defer C.free(unsafe.Pointer(titleCString))
 	defer C.free(unsafe.Pointer(messageCString))
-	C.DJI4GConnectShowNotification(titleCString, messageCString)
+	C.FourGConnectShowNotification(titleCString, messageCString)
 }

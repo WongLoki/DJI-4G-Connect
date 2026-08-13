@@ -1,6 +1,6 @@
 # Third-Party and Trademark Notices
 
-DJI 4G Connect dynamically links against libusb 1.0.30.
+4G Connect dynamically links against libusb 1.0.30.
 
 - Project: <https://github.com/libusb/libusb>
 - License: GNU Lesser General Public License v2.1 or later
@@ -13,7 +13,7 @@ This project uses publicly documented USB standards, the public libusb API, and
 Quectel AT commands such as `AT+QCFG="usbnet"` and `AT+CFUN=1,1` to interoperate
 with compatible hardware.
 
-The current DJI 4G Connect source tree is an independent implementation. It does
+The current 4G Connect source tree is an independent implementation. It does
 not include source code from DJOneHub or VoHive. Archived v0.1.x releases retain
 the license terms and notices shipped inside those archives.
 

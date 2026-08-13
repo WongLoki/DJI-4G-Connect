@@ -3,9 +3,9 @@ set -eu
 
 ROOT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 VERSION=${1:-dev}
-APP_NAME="DJI 4G Connect"
-EXECUTABLE_NAME=DJI4GConnect
-PACKAGE_STEM=DJI-4G-Connect
+APP_NAME="4G Connect"
+EXECUTABLE_NAME=FourGConnect
+PACKAGE_STEM=4G-Connect
 DIST_DIR="${ROOT_DIR}/dist"
 ARCHIVE="${DIST_DIR}/${PACKAGE_STEM}-macOS-arm64-${VERSION}.zip"
 LIBUSB_VERSION=1.0.30
@@ -15,7 +15,7 @@ BUILD_ROOT="${TMPDIR:-/tmp}/dji-4g-connect-build-arm64"
 STAGE_DIR="${BUILD_ROOT}/stage"
 APP_DIR="${STAGE_DIR}/${APP_NAME}.app"
 VERIFY_DIR="${BUILD_ROOT}/verify"
-ICON_SOURCE="${ROOT_DIR}/assets/AppIcon-1024-glass-logo.png"
+ICON_SOURCE="${ROOT_DIR}/assets/AppIcon-1024.png"
 ICONSET_DIR="${BUILD_ROOT}/AppIcon.iconset"
 LIBUSB_ARCHIVE="${BUILD_ROOT}/libusb-${LIBUSB_VERSION}.tar.bz2"
 LIBUSB_SOURCE="${BUILD_ROOT}/libusb-source"

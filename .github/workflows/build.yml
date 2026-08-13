@@ -58,10 +58,10 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v7
         with:
-          name: DJI-4G-Connect-macOS-arm64-${{ steps.version.outputs.value }}
+          name: 4G-Connect-macOS-arm64-${{ steps.version.outputs.value }}
           path: |
-            dist/DJI-4G-Connect-macOS-arm64-${{ steps.version.outputs.value }}.zip
-            dist/DJI-4G-Connect-macOS-arm64-${{ steps.version.outputs.value }}.zip.sha256
+            dist/4G-Connect-macOS-arm64-${{ steps.version.outputs.value }}.zip
+            dist/4G-Connect-macOS-arm64-${{ steps.version.outputs.value }}.zip.sha256
           if-no-files-found: error
 
   release:
@@ -76,7 +76,7 @@ jobs:
       - name: Download packaged app
         uses: actions/download-artifact@v8
         with:
-          pattern: DJI-4G-Connect-macOS-arm64-*
+          pattern: 4G-Connect-macOS-arm64-*
           path: dist
           merge-multiple: true
 
@@ -85,8 +85,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "${GITHUB_REF_NAME}" \
-            dist/DJI-4G-Connect-macOS-arm64-*.zip \
-            dist/DJI-4G-Connect-macOS-arm64-*.zip.sha256 \
+            dist/4G-Connect-macOS-arm64-*.zip \
+            dist/4G-Connect-macOS-arm64-*.zip.sha256 \
             --repo "${GITHUB_REPOSITORY}" \
             --generate-notes \
-            --title "DJI 4G Connect ${GITHUB_REF_NAME}"
+            --title "4G Connect ${GITHUB_REF_NAME}"

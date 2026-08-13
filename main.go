@@ -27,19 +27,19 @@ func main() {
 	log.SetFlags(log.Ldate | log.Ltime)
 
 	if !noNotify {
-		showNotification("DJI 4G Connect", "正在检查大疆 4G 模块和 macOS 网卡…")
+		showNotification("4G Connect", "正在检查受支持的 4G 模块和 macOS 网卡…")
 	}
 	result, err := activateDJINetwork(output)
 	if err != nil {
 		log.Printf("激活失败：%v", err)
 		if !noNotify {
-			showNotification("DJI 4G Connect 激活失败", err.Error())
+			showNotification("4G Connect 激活失败", err.Error())
 		}
 		os.Exit(1)
 	}
 	log.Printf("%s", result)
 	if !noNotify {
-		showNotification("DJI 4G Connect", result)
+		showNotification("4G Connect", result)
 	}
 }
 
@@ -48,7 +48,7 @@ func openLogFile() (*os.File, error) {
 	if err != nil {
 		return nil, fmt.Errorf("读取用户目录失败: %w", err)
 	}
-	directory := filepath.Join(home, "Library", "Logs", "DJI 4G Connect")
+	directory := filepath.Join(home, "Library", "Logs", "4G Connect")
 	if err := os.MkdirAll(directory, 0o700); err != nil {
 		return nil, fmt.Errorf("创建日志目录失败: %w", err)
 	}
