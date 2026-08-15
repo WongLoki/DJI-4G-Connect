@@ -35,6 +35,40 @@ func TestParseNetworkServices(t *testing.T) {
 	}
 }
 
+func TestSelectCurrentModemNetworkServicePrefersPresentECMInterface(t *testing.T) {
+	services := []networkService{
+		{name: "Baiwang", port: "Baiwang", device: "en9"},
+		{name: "EG25G-QDC507", port: "EG25G-QDC507", device: "en11", disabled: true},
+	}
+	ports := []hardwarePort{
+		{name: "EG25G-QDC507", device: "en11"},
+	}
+
+	service := selectCurrentModemNetworkService(services, ports)
+	if service == nil {
+		t.Fatal("expected a network service")
+	}
+	if service.name != "EG25G-QDC507" || service.device != "en11" {
+		t.Fatalf("unexpected service: %#v", service)
+	}
+	if !service.disabled || !service.present {
+		t.Fatalf("service state was not preserved: %#v", service)
+	}
+}
+
+func TestSelectCurrentModemNetworkServiceReturnsNilWithoutCompatibleService(t *testing.T) {
+	services := []networkService{
+		{name: "Wi-Fi", port: "Wi-Fi", device: "en0"},
+	}
+	ports := []hardwarePort{
+		{name: "Wi-Fi", device: "en0"},
+	}
+
+	if service := selectCurrentModemNetworkService(services, ports); service != nil {
+		t.Fatalf("unexpected service: %#v", service)
+	}
+}
+
 func TestResponseParsing(t *testing.T) {
 	if !responseFinished("AT\r\r\nOK\r\n") || !responseOK("AT\r\nOK") {
 		t.Fatal("OK response should be complete and successful")

@@ -21,7 +21,9 @@ func main() {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
-	defer logFile.Close()
+	defer func() {
+		_ = logFile.Close()
+	}()
 	output := io.MultiWriter(os.Stdout, logFile)
 	log.SetOutput(output)
 	log.SetFlags(log.Ldate | log.Ltime)
